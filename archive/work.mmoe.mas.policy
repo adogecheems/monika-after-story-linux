@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC "-//freedesktop//DTD polkit Policy Configuration 1.0//EN"
+"http://www.freedesktop.org/software/polkit/policyconfig-1.dtd">
+<policyconfig>
+  <vendor>adogecheems</vendor>
+  <vendor_url>https://mas.mmoe.work</vendor_url>
+  <icon_name>dialog-password</icon_name>
+  <action id="work.mmoe.mas">
+    <description>Elevate permissions for monika after story to run properly</description>
+    <message lang="en">Monika needs your trust as an administrator</message>
+    <message lang="zh_CN">莫妮卡需要作为管理员的你的信任</message>
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">/opt/MAS/mas-launch.sh</annotate>
+    <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
+  </action>
+</policyconfig>
