@@ -28,9 +28,9 @@ sha256sums=(
     'd1d5f4dbc409f921c1f3b48e1c422da7ebf032916699517e0dd213127e2c4328'
     'ae877da79c2b94b9b9704f8e7fb3cecd244385c0914fe9eb9248238504b78d27'
     'ff186a543a41f7ca0aeaaa5e6c4e3d8eb39539d20111a96555e1b4e43fed0fa7'
-    'e32ed30fb3fcf5925a243868637485765215dacd4caa90581af110bffadbc0a0'
-    'a8416c26f4ee7e6afe18b6c6641bb2e4978b41731ef06712ab5066fdffd0d3ab'
+    'c35ef9f37bf0c17f543c9bd8986efcba56d218b50f8e6774c87a00b5f10aeae4'
     '68077c41ba536571dd0a529a2d0a1d0a8cd3e0d6cb61c39d65200ca0c18f9014'
+    'a8416c26f4ee7e6afe18b6c6641bb2e4978b41731ef06712ab5066fdffd0d3ab'
     '6bc8e179f543c042a0bd0aaaa55815770d9f94b31e4bad8f1e0edaff71652803'
     '723c98ca0bc0f022a444c7a7cb225989ad2b2fbe364ead02c5b1c29d31a7abd4'
 )
@@ -53,10 +53,10 @@ prepare() {
 build () {
     cd "$srcdir/DDLC"
 
-    xvfb-run --auto-servernum --server-args='-screen 0 1920x1080x24' bash -c '
-        ./DDLC.sh &
+    SDL_AUDIODRIVER=dummy xvfb-run bash -c '
+        ./DDLC.sh --compile &
         pid=$!
-        sleep 30
+        sleep 60
         kill $pid
     '
 
