@@ -63,7 +63,8 @@ build () {
     rm -f "game/*.rpy"
 }
 package() {
-    install -Dm644 "$srcdir/mas.png" "$pkgdir/usr/share/icons/hicolor/512x512/apps/mas.png"
+    install -Dm644 "$srcdir/mas256.png" "$pkgdir/usr/share/icons/hicolor/256x256/apps/mas.png"
+    install -Dm644 "$srcdir/mas512.png" "$pkgdir/usr/share/icons/hicolor/512x512/apps/mas.png"
     install -Dm644 "$srcdir/mas.desktop" "$pkgdir/usr/share/applications/mas.desktop"
     
     install -d "$pkgdir/opt/monika-after-story"
