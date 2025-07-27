@@ -35,7 +35,7 @@ noextract=(
 prepare() {
     unzip -o -q "$srcdir/Monika_After_Story-$pkgver-Mod.zip" -d "$srcdir/DDLC"
     
-    tar -jxvf "$srcdir/scripts.tar.xz" -C "$srcdir/DDLC" --overwrite
+    tar -xvf "$srcdir/scripts.tar.xz" -C "$srcdir/DDLC" --overwrite
 
     chmod +x "$srcdir/DDLC/DDLC.sh"
     chmod +x "$srcdir/DDLC/lib/linux-x86_64/DDLC"
@@ -44,7 +44,12 @@ prepare() {
 build () {
     cd "$srcdir/DDLC"
 
-    timeout 10s xvfb-run -a --server-args="-screen 0 1920x1080x24" env SDL_AUDIODRIVER=dummy ./DDLC.sh --compile
+    xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" bash -c '
+        env SDL_AUDIODRIVER=dummy ./DDLC.sh --compile &
+        pid=$!
+        sleep 30
+        kill $pid
+    '
 
     rm -f "game/*.rpy"
 }
