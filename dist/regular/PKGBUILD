@@ -47,5 +47,5 @@ package() {
     install -Dm644 "$srcdir/mas.desktop" "$pkgdir/usr/share/applications/mas.desktop"
     
     install -d "$pkgdir/opt/monika-after-story"
-    rsync -a "$srcdir/DDLC/" "$pkgdir/opt/monika-after-story"
+    cp -a "$srcdir/DDLC/" "$pkgdir/opt/monika-after-story"
 }
