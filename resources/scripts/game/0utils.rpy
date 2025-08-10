@@ -227,8 +227,8 @@ python early in mas_logging:
     #^
     #No, you can`t.
     #LOG_PATH = os.path.join(renpy.config.basedir, "log")
-    LOG_PATH = os.path.join(os.path.expanduser("~/.renpy"), renpy.config.save_directory, "log")
-
+    renpy_home = os.path.expanduser("~/.renpy")
+    LOG_PATH = os.path.join(renpy_home, renpy.config.save_directory, "log")
 
     LOG_MAXSIZE_B = 5242880 #5 mb
 
