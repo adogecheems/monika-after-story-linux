@@ -9,6 +9,7 @@ arch=(
 )
 url="https://github.com/adogecheems/monika-after-story-linux"
 license=('custom')
+depends=('python2')
 makedepends=('unzip')
 optdepends=('polkit: for possible privilege escalation')
 source=(
@@ -36,6 +37,8 @@ prepare() {
     chmod +x "$srcdir/DDLC/DDLC.sh"
     chmod +x "$srcdir/DDLC/lib/linux-x86_64/DDLC"
     chmod +x "$srcdir/DDLC/lib/linux-i686/DDLC"
+
+    chmod 700 "$srcdir/privilege_escalation.sh"
 }
 build () {
     cd "$srcdir/DDLC"
