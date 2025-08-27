@@ -9,28 +9,32 @@ arch=(
 )
 url="https://github.com/adogecheems/monika-after-story-linux"
 license=('custom')
-depends=('python2')
-makedepends=('unzip')
-optdepends=('polkit: for possible privilege escalation')
+depends=(
+    'python2'
+    'polkit'
+)
 source=(
     "https://github.com/adogecheems/monika-after-story-linux/raw/refs/heads/main/resources/DDLC.tar.xz"
     "https://github.com/adogecheems/monika-after-story-linux/raw/refs/heads/main/resources/scripts.tar.xz"
+    "https://github.com/adogecheems/monika-after-story-linux/raw/refs/heads/main/resources/redirect.sh"
     "https://github.com/adogecheems/monika-after-story-linux/raw/refs/heads/main/resources/mas.png"
-    "https://github.com/Monika-After-Story/MonikaModDev/archive/refs/tags/v$pkgver.tar.gz"
+    "mas-$pkgver.tar.gz::https://github.com/Monika-After-Story/MonikaModDev/archive/refs/tags/v$pkgver.tar.gz"
     "mas.desktop"
 )
 sha256sums=(
     'd1d5f4dbc409f921c1f3b48e1c422da7ebf032916699517e0dd213127e2c4328'
-    '89be2c2693dd0067dbe62e0c56a28294ae00a7e0b626a4ed8707fe4b5c3e00e8'
+    'SKIP'
+    'SKIP'
     'a8416c26f4ee7e6afe18b6c6641bb2e4978b41731ef06712ab5066fdffd0d3ab'
     '550bf597271b3b6a3774018968d8f2ed8620e6a33c584ddcadab8e8f75f95d15'
     '723c98ca0bc0f022a444c7a7cb225989ad2b2fbe364ead02c5b1c29d31a7abd4'
 )
 prepare() {
     cp -a "$srcdir/MonikaModDev-$pkgver/Monika After Story/." "$srcdir/DDLC/"
-
     cp -a "$srcdir/scripts/." "$srcdir/DDLC/"
+    cp -a "$srcdir/redirect.sh" "$srcdir/DDLC/"
     
+    chmod +x "$srcdir/DDLC/redirect.sh"
     chmod +x "$srcdir/DDLC/DDLC.sh"
     chmod +x "$srcdir/DDLC/lib/linux-x86_64/DDLC"
     chmod +x "$srcdir/DDLC/lib/linux-i686/DDLC"
@@ -38,27 +42,7 @@ prepare() {
 build () {
     cd "$srcdir/DDLC"
     
-    # Game files redirection
-    EXCLUDE_LIST=("script-ch30.rpy")
-    
-    find "game/" -type f -name "*.rpy" | while read -r file; do
-        skip=0
-        for exclude in "${EXCLUDE_LIST[@]}"; do
-            if [[ "$(basename "$file")" == "$exclude" ]]; then
-                skip=1
-                break
-            fi
-        done
-        if [[ $skip -eq 0 ]]; then
-            sed -i \
-            -e "s/renpy\.config\.basedir/store.home()/g" \
-            -e "s/config\.basedir/store.home()/g" \
-            "$file"
-        fi
-    done
-    
-    sed -i 's/log_enable = True/log_enable = False/' renpy/config.py
-    
+    ./redirect.sh
     ./DDLC.sh . compile
     
     rm -f game/*.rpy
