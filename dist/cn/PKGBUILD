@@ -1,0 +1,61 @@
+# Maintainer: adogecheems <adogecheems@outlook.com>
+pkgname=monika-after-story-cn
+pkgver=CN0012H0
+pkgrel=1
+epoch=1
+pkgdesc="A mod for the free game Doki Doki Literature Club from Team Salvato, which builds on Act 3 to create a simulator of your eternal life with Monika, with third-party Chinese language support."
+arch=(
+    'i686'
+    'x86_64'
+)
+url="https://github.com/adogecheems/monika-after-story-linux"
+license=('custom')
+depends=(
+    'python2'
+    'polkit'
+)
+makedepends=(
+    'unrpyc1'
+)
+source=(
+    "https://github.com/adogecheems/monika-after-story-linux/raw/refs/heads/main/resources/DDLC.tar.xz"
+    "https://github.com/adogecheems/monika-after-story-linux/raw/refs/heads/main/resources/scripts.tar.xz"
+    "https://github.com/adogecheems/monika-after-story-linux/raw/refs/heads/main/resources/redirect.sh"
+    "https://github.com/adogecheems/monika-after-story-linux/raw/refs/heads/main/resources/mas.png"
+    "mascn-$pkgver.tar.gz::https://github.com/adogecheems/monika-after-story-linux/raw/refs/heads/main/resources/MAS_$pkgver.tar.xz"
+    "mas.desktop"
+)
+sha256sums=(
+    'd1d5f4dbc409f921c1f3b48e1c422da7ebf032916699517e0dd213127e2c4328'
+    'SKIP'
+    'SKIP'
+    'a8416c26f4ee7e6afe18b6c6641bb2e4978b41731ef06712ab5066fdffd0d3ab'
+    '550bf597271b3b6a3774018968d8f2ed8620e6a33c584ddcadab8e8f75f95d15'
+    '723c98ca0bc0f022a444c7a7cb225989ad2b2fbe364ead02c5b1c29d31a7abd4'
+)
+prepare() {
+    cp -a "$srcdir/MonikaModDev-$pkgver/Monika After Story/." "$srcdir/DDLC/"
+    cp -a "$srcdir/scripts/." "$srcdir/DDLC/"
+    cp -a "$srcdir/redirect.sh" "$srcdir/DDLC/"
+    
+    chmod +x "$srcdir/DDLC/redirect.sh"
+    chmod +x "$srcdir/DDLC/DDLC.sh"
+    chmod +x "$srcdir/DDLC/lib/linux-x86_64/DDLC"
+    chmod +x "$srcdir/DDLC/lib/linux-i686/DDLC"
+}
+build () {
+    cd "$srcdir/DDLC"
+    
+    unrpyc1 game
+    ./redirect.sh
+    ./DDLC.sh . compile
+    
+    rm -f game/*.rpy
+}
+package() {
+    install -Dm644 "$srcdir/mas.png" "$pkgdir/usr/share/icons/hicolor/512x512/apps/mas.png"
+    install -Dm644 "$srcdir/mas.desktop" "$pkgdir/usr/share/applications/mas.desktop"
+    
+    install -d "$pkgdir/opt/monika-after-story-cn"
+    cp -a "$srcdir/DDLC/." "$pkgdir/opt/monika-after-story-cn"
+}
