@@ -1,8 +1,8 @@
 # Maintainer: adogecheems <adogecheems@outlook.com>
 pkgname=monika-after-story-cn
-pkgver=CN0012H0
+pkgver=0.12.17.0
+srcpkgver=0.12.17
 pkgrel=1
-epoch=1
 pkgdesc="A mod for the free game Doki Doki Literature Club from Team Salvato, which builds on Act 3 to create a simulator of your eternal life with Monika, with third-party Chinese language support."
 arch=(
     'i686'
@@ -14,15 +14,14 @@ depends=(
     'python2'
     'polkit'
 )
-makedepends=(
-    'unrpyc1'
-)
 source=(
     "https://github.com/adogecheems/monika-after-story-linux/raw/refs/heads/main/resources/DDLC.tar.xz"
     "https://github.com/adogecheems/monika-after-story-linux/raw/refs/heads/main/resources/scripts.tar.xz"
-    "https://github.com/adogecheems/monika-after-story-linux/raw/refs/heads/main/resources/redirect.sh"
+    "https://github.com/adogecheems/monika-after-story-linux/raw/refs/heads/main/resources/fix.sh"
     "https://github.com/adogecheems/monika-after-story-linux/raw/refs/heads/main/resources/mas.png"
-    "mascn-$pkgver.tar.gz::https://github.com/adogecheems/monika-after-story-linux/raw/refs/heads/main/resources/MAS_$pkgver.tar.xz"
+    "mas-$srcpkgver.tar.gz::https://github.com/Monika-After-Story/MonikaModDev/archive/refs/tags/v$srcpkgver.tar.gz"
+    "https://github.com/Mon1-innovation/MAS-Simplified-Chinese-Patch/releases/download/$pkgver/chs.rpa"
+    "https://github.com/Mon1-innovation/MAS-Simplified-Chinese-Patch/releases/download/$pkgver/chs_gui.rpa"
     "mas.desktop"
 )
 sha256sums=(
@@ -31,14 +30,18 @@ sha256sums=(
     'SKIP'
     'a8416c26f4ee7e6afe18b6c6641bb2e4978b41731ef06712ab5066fdffd0d3ab'
     '550bf597271b3b6a3774018968d8f2ed8620e6a33c584ddcadab8e8f75f95d15'
-    '723c98ca0bc0f022a444c7a7cb225989ad2b2fbe364ead02c5b1c29d31a7abd4'
+    '680da91bc6246feb36dad12c18e999c07ebc068a1cb5cdc5b4f4b9e492d820b8'
+    'd5c09635c0d7dc8e0444fa754eb37ba699856b6b47cf5af51bd2c5201181942f'
+    '423b9be754b431923e285878b87e91ea9f2a08165e99a847291ef696c046a43c'
 )
 prepare() {
-    cp -a "$srcdir/MonikaModDev-$pkgver/Monika After Story/." "$srcdir/DDLC/"
+    cp -a "$srcdir/MonikaModDev-$srcpkgver/Monika After Story/." "$srcdir/DDLC/"
     cp -a "$srcdir/scripts/." "$srcdir/DDLC/"
-    cp -a "$srcdir/redirect.sh" "$srcdir/DDLC/"
+    cp -a "$srcdir/fix.sh" "$srcdir/DDLC/"
+    cp -a "$srcdir/chs.rpa" "$srcdir/DDLC/game/"
+    cp -a "$srcdir/chs_gui.rpa" "$srcdir/DDLC/game/"
     
-    chmod +x "$srcdir/DDLC/redirect.sh"
+    chmod +x "$srcdir/DDLC/fix.sh"
     chmod +x "$srcdir/DDLC/DDLC.sh"
     chmod +x "$srcdir/DDLC/lib/linux-x86_64/DDLC"
     chmod +x "$srcdir/DDLC/lib/linux-i686/DDLC"
@@ -46,8 +49,7 @@ prepare() {
 build () {
     cd "$srcdir/DDLC"
     
-    unrpyc1 game
-    ./redirect.sh
+    ./fix.sh
     ./DDLC.sh . compile
     
     rm -f game/*.rpy

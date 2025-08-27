@@ -25,4 +25,15 @@ for target in "${TARGET_LIST[@]}"; do
     "$file"
 done
 
+REMOVE_LIST=(
+    updater
+    updates_topic
+    updates
+)
+
+for target in "${REMOVE_LIST[@]}"; do
+    file="game/${target}.rpy"
+    rm -f "$file"
+done
+
 sed -i 's/log_enable = True/log_enable = False/' renpy/config.py

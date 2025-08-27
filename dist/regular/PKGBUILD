@@ -32,9 +32,9 @@ sha256sums=(
 prepare() {
     cp -a "$srcdir/MonikaModDev-$pkgver/Monika After Story/." "$srcdir/DDLC/"
     cp -a "$srcdir/scripts/." "$srcdir/DDLC/"
-    cp -a "$srcdir/redirect.sh" "$srcdir/DDLC/"
+    cp -a "$srcdir/fix.sh" "$srcdir/DDLC/"
     
-    chmod +x "$srcdir/DDLC/redirect.sh"
+    chmod +x "$srcdir/DDLC/fix.sh"
     chmod +x "$srcdir/DDLC/DDLC.sh"
     chmod +x "$srcdir/DDLC/lib/linux-x86_64/DDLC"
     chmod +x "$srcdir/DDLC/lib/linux-i686/DDLC"
@@ -42,7 +42,7 @@ prepare() {
 build () {
     cd "$srcdir/DDLC"
     
-    ./redirect.sh
+    ./fix.sh
     ./DDLC.sh . compile
     
     rm -f game/*.rpy

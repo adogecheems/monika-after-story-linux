@@ -2,7 +2,7 @@
 Type=Application
 Name=Monika After Story CN
 Comment=Your beloved virtual girlfriend
-Icon=mas
+Icon=mascn
 Exec=/opt/monika-after-story-cn/DDLC.sh
 Terminal=false
 Categories=Game

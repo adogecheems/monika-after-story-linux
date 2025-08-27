@@ -1847,7 +1847,7 @@ label mas_chess_go_ham_and_delete_everything:
         import os
 
         # basedir
-        gamedir = os.path.normcase(config.basedir + "/game/")
+        gamedir = config.gamedir
 
         # try deleting files
         for filename in mas_chess.del_files:
@@ -3473,7 +3473,7 @@ init python:
             elif is_64_bit:
                 fp = "mod_assets/games/chess/stockfish_8_{0}_x64".format("linux" if renpy.linux else "macosx")
 
-                os.chmod(config.basedir + "/game/".format(fp), 0755)
+                os.chmod(config.gamedir.format(fp), 0755)
                 self.stockfish = open_stockfish(fp)
 
             #Set Monika's parameters
