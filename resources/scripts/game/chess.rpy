@@ -3473,7 +3473,6 @@ init python:
             elif is_64_bit:
                 fp = "mod_assets/games/chess/stockfish_8_{0}_x64".format("linux" if renpy.linux else "macosx")
 
-                os.chmod(config.gamedir.format(fp), 0755)
                 self.stockfish = open_stockfish(fp)
 
             #Set Monika's parameters
