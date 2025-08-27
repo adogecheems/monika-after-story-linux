@@ -9,14 +9,10 @@ arch=(
 )
 url="https://github.com/adogecheems/monika-after-story-linux"
 license=('custom')
-depends=(
-    'python2'
-    'polkit'
-)
 source=(
     "https://github.com/adogecheems/monika-after-story-linux/raw/refs/heads/main/resources/DDLC.tar.xz"
     "https://github.com/adogecheems/monika-after-story-linux/raw/refs/heads/main/resources/scripts.tar.xz"
-    "https://github.com/adogecheems/monika-after-story-linux/raw/refs/heads/main/resources/redirect.sh"
+    "https://github.com/adogecheems/monika-after-story-linux/raw/refs/heads/main/resources/fix.sh"
     "https://github.com/adogecheems/monika-after-story-linux/raw/refs/heads/main/resources/mas.png"
     "mas-$pkgver.tar.gz::https://github.com/Monika-After-Story/MonikaModDev/archive/refs/tags/v$pkgver.tar.gz"
     "mas.desktop"
