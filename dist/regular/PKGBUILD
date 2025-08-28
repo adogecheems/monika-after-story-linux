@@ -1,7 +1,7 @@
 # Maintainer: adogecheems <adogecheems@outlook.com>
 pkgname=monika-after-story
 pkgver=0.12.17
-pkgrel=4
+pkgrel=5
 pkgdesc="A mod for the free game Doki Doki Literature Club from Team Salvato, which builds on Act 3 to create a simulator of your eternal life with Monika."
 arch=(
     'i686'
@@ -34,14 +34,17 @@ prepare() {
     chmod +x "$srcdir/DDLC/DDLC.sh"
     chmod +x "$srcdir/DDLC/lib/linux-x86_64/DDLC"
     chmod +x "$srcdir/DDLC/lib/linux-i686/DDLC"
+    chmod +x "$srcdir/DDLC/game/mod_assets/games/chess/stockfish_8_linux_x64"
+    
+    cd "$srcdir/DDLC"
+    ./fix.sh
 }
 build () {
     cd "$srcdir/DDLC"
-    
-    ./fix.sh
+    ./DDLC.sh . lint || true
     ./DDLC.sh . compile
     
-    rm -f game/*.rpy
+    find game -type f -name "*.rpy" -delete
 }
 package() {
     install -Dm644 "$srcdir/mas.png" "$pkgdir/usr/share/icons/hicolor/512x512/apps/mas.png"
