@@ -36,4 +36,5 @@ for target in "${REMOVE_LIST[@]}"; do
     rm -f "$file"
 done
 
+sed -i 's/build.include_update = False/build.include_update = True/' game/options.rpy
 sed -i 's/log_enable = True/log_enable = False/' renpy/config.py
