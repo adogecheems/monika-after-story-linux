@@ -45,6 +45,7 @@ build () {
     ./DDLC.sh . compile
     
     find game -type f -name "*.rpy" -delete
+    rm fix.sh traceback.txt
 }
 package() {
     install -Dm644 "$srcdir/mas.png" "$pkgdir/usr/share/icons/hicolor/512x512/apps/mas.png"
