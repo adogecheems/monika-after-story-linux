@@ -1,4 +1,4 @@
-TARGET_LIST=(
+FIX_LIST=(
     definitions
     script-affection
     script-ch30
@@ -6,7 +6,6 @@ TARGET_LIST=(
     script-holidays
     script-introduction
     script-story-events
-    updates
     zz_backup
     zz_consumables
     zz_dockingstation
@@ -27,7 +26,7 @@ done
 
 REMOVE_LIST=(
     updater
-    updates_topic
+    updates_topics
     updates
 )
 
@@ -36,5 +35,5 @@ for target in "${REMOVE_LIST[@]}"; do
     rm -f "$file"
 done
 
-sed -i 's/build.include_update = False/build.include_update = True/' game/options.rpy
+sed -i 's/build.include_update = True/build.include_update = False/' game/options.rpy
 sed -i 's/log_enable = True/log_enable = False/' renpy/config.py
