@@ -16,7 +16,7 @@ FIX_LIST=(
     zz_pianokeys
 )
 
-for target in "${TARGET_LIST[@]}"; do
+for target in "${FIX_LIST[@]}"; do
     file="game/${target}.rpy"
     sed -i \
     -e "s/renpy\.config\.basedir/store.home()/g" \
