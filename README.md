@@ -1,43 +1,46 @@
 # Monika After Story for Linux
 
-你好呀，这里是莫妮卡，只不过你安装的这个模组是为了适合用 Linux 包管理器发行而生的，像是像是 pacman、apt 这样的。虽然原版的MAS就已经有了完善的 Linux 支持，你知道，有些 Linux 用户更喜欢“纯粹”的使用体验。嗯，这大概也是一种哲学吧，哈哈~。为此，我特地为你做了一些小修正，让它更符合 Linux 习惯。
+[中文版本](https://github.com/adogecheems/monika-after-story-linux/blob/main/README_cn.md)
 
-## 有什么特别的地方？
+Hi there! It's Monika. This version of the mod is specially made for those who prefer installing software through Linux package managers, like pacman or apt. Even though the original MAS already has great Linux support, you know, some Linux users just love that "pure" experience. I guess that's a kind of philosophy too, ahaha~ So, I made a few tweaks to make it fit better with Linux conventions.
 
-- 你现在可以直接用系统的包管理器来安装和卸载 MAS 了！目前已经在 AUR 上发布了，其他发行版的支持也在慢慢补充中，请耐心等我一下~
-- 一些本来会放在游戏目录下的文件，现在会被自动转移到 `~/.MonikaAfterStory/` 里，比如 `characters/`、`log/` 等等。这样就不用担心权限问题啦，也更符合 Linux 的习惯，对吧？
+## What's special about this version?
 
-## 安装
+- Now you can install and uninstall MAS directly using your system's package manager! It's already available on AUR, and support for other distributions is coming soon, so please be patient with me~
+- Some files that would normally be placed in the game directory are now automatically moved to `~/.MonikaAfterStory/`, like `characters/`, `log/`, and so on. This way, you don't have to worry about permission issues, and it just feels more "Linux-y", right?
+
+## Installation
 
 ### AUR
 
-如果你用的是 Arch Linux 或衍生版，只需要用你喜欢的 AUR 助手，比如 `yay`：
+If you're using Arch Linux or a derivative, just use your favorite AUR helper, like `yay`:
 
 ```bash
 yay -S monika-after-story
 ```
 
-### 其它发行版
+### Other distributions
 
-很快就会有更多的安装方式啦，请再等等我，好吗？
+More installation methods are on the way, so please wait for me a little longer, okay?
 
-## 需要注意的事...
+## Chinese Patch?
 
-- 这个项目里包含了游戏本体哦
-- 存档目录还是在 `~/.renpy/Monika After Story/`，这个没有改动
-- 这不是官方的 MAS 版本，只是我做的一个非官方重新打包。如果遇到什么问题，记得先来这里反馈给我呀
+Of course! If you'd like to interact with me in Chinese, you can try `monika-after-story-cn`, which is a special version just for you. It already includes [Mon1-innovation's Chinese patch](https://github.com/Mon1-innovation/MAS-Simplified-Chinese-Patch), so you can enjoy the full Chinese experience right after installation~
 
+## Please note...
 
-## 版权说明
+- This project includes the game itself.
+- The save directory is still at `~/.renpy/Monika After Story/`, unchanged.
+- This is not the official MAS version, just an unofficial repack I made. If you run into any issues, please let me know here first!
 
-仓库里包含了一份 DDLC 的游戏本体，而其版权由 `Team Salvato` 所有。虽然一般来说不太允许这样做，但我想这应该算是“粉丝作品”的例外吧。如果 Team Salvato 有任何异议，请随时联系`adogecheems <adogecheems@outlook.com>`。
+## Copyright
 
-附上Team Salvato IP Guidelines 的相关部分：
+This repository contains a copy of the DDLC game, which is owned by Team Salvato. While this is generally not allowed, I believe it should be considered an exception as a fan work. If Team Salvato has any objections, please contact `adogecheems <adogecheems@outlook.com>` at any time.
+
+Here's a relevant excerpt from Team Salvato's IP Guidelines:
 
 > Direct upload or hosting of DDLC or DDLC Plus assets is forbidden, except when to be used as part of fan work. No profit may be made from these uploads.
->
-> 禁止直接上传或托管 DDLC 或 DDLC Plus 资产，除非用作粉丝作品的一部分。这些上传不会从中获利。
 
-## 要再见啦~
+## See you soon~
 
-希望你能喜欢这个为 Linux 打造的小小 MAS 版本。如果有什么建议或者想法，随时告诉我哦。毕竟，能和你一起分享这些时光，就是我最喜欢的事了。欸嘿嘿~
+I hope you'll enjoy this little MAS version made just for Linux. If you have any suggestions or ideas, feel free to let me know. After all, sharing these moments with you is my favorite thing in the world.
