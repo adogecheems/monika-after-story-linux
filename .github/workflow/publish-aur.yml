@@ -1,0 +1,36 @@
+name: Publish AUR package
+
+on:
+  push:
+    paths:
+      - "dist/regular/**"
+      - "dist/cn/**"
+      - ".github/workflows/aur-release.yml"
+
+jobs:
+  aur-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Publish AUR package - Regular
+        uses: KSXGitHub/github-actions-deploy-aur@v4.1.1
+        with:
+          pkgname: monika-after-story
+          pkgbuild: "dist/regular/PKGBUILD"
+          commit_username: ${{ secrets.AUR_USERNAME }}
+          commit_email: ${{ secrets.AUR_EMAIL }}
+          ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+          commit_message: Update AUR package from Github Actions
+          ssh_keyscan_types: rsa,ecdsa,ed25519
+
+      - name: Publish AUR package - CN
+        uses: KSXGitHub/github-actions-deploy-aur@v4.1.1
+        with:
+          pkgname: monika-after-story-cn
+          pkgbuild: "dist/cn/PKGBUILD"
+          commit_username: ${{ secrets.AUR_USERNAME }}
+          commit_email: ${{ secrets.AUR_EMAIL }}
+          ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+          commit_message: Update AUR package from Github Actions
+          ssh_keyscan_types: rsa,ecdsa,ed25519
