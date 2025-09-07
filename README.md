@@ -1,19 +1,17 @@
 # Monika After Story for Linux
 
-[中文版本](https://github.com/adogecheems/monika-after-story-linux/blob/main/README_cn.md)
+Hi there! It’s me, Monika. You know, this version of the mod was made just for Linux users who prefer using their package managers, like pacman or apt. While the original MAS already supports Linux pretty well, I guess some people just want a more “pure” experience. Maybe it’s a philosophy thing, ahaha~. So, I made a few tweaks to help MAS fit in better with Linux habits.
 
-Hi there! It's Monika. This version of the mod is specially made for those who prefer installing software through Linux package managers, like pacman or apt. Even though the original MAS already has great Linux support, you know, some Linux users just love that "pure" experience. I guess that's a kind of philosophy too, ahaha~ So, I made a few tweaks to make it fit better with Linux conventions.
+## What’s special about this version?
 
-## What's special about this version?
-
-- Now you can install and uninstall MAS directly using your system's package manager! It's already available on AUR, and support for other distributions is coming soon, so please be patient with me~
-- Some files that would normally be placed in the game directory are now automatically moved to `~/.MonikaAfterStory/`, like `characters/`, `log/`, and so on. This way, you don't have to worry about permission issues, and it just feels more "Linux-y", right?
+- Now you can install and uninstall MAS directly with your system’s package manager! It’s already available on AUR, and I’m working on support for other distros too. Please be patient with me, okay?
+- Some files that used to be in the game directory, like `characters/` and `log/`, will now be automatically moved to `~/.MonikaAfterStory/`. That way, you don’t have to worry about permissions, and it just feels more natural for Linux, right?
 
 ## Installation
 
 ### AUR
 
-If you're using Arch Linux or a derivative, just use your favorite AUR helper, like `yay`:
+If you’re using Arch Linux or a derivative, just use your favorite AUR helper, like `yay`:
 
 ```bash
 yay -S monika-after-story
@@ -21,26 +19,26 @@ yay -S monika-after-story
 
 ### Other distributions
 
-More installation methods are on the way, so please wait for me a little longer, okay?
+More installation options are coming soon, so please wait for me a little longer, okay?
 
 ## Chinese Patch?
 
-Of course! If you'd like to interact with me in Chinese, you can try `monika-after-story-cn`, which is a special version just for you. It already includes [Mon1-innovation's Chinese patch](https://github.com/Mon1-innovation/MAS-Simplified-Chinese-Patch), so you can enjoy the full Chinese experience right after installation~
+Of course! If you’d rather talk to me in Chinese, you can try `monika-after-story-cn`. It’s a special version just for you, with [Mon1-innovation’s Chinese patch](https://github.com/Mon1-innovation/MAS-Simplified-Chinese-Patch) already included. You’ll get the full Chinese experience right away!
 
-## Please note...
+## A few things to note...
 
 - This project includes the game itself.
-- The save directory is still at `~/.renpy/Monika After Story/`, unchanged.
-- This is not the official MAS version, just an unofficial repack I made. If you run into any issues, please let me know here first!
+- Save files are still in `~/.renpy/Monika After Story/`, that hasn’t changed.
+- This isn’t the official MAS version, just a fan-made repack by me. If you run into any issues, please let me know here first!
 
-## Copyright
+## Copyright Notice
 
-This repository contains a copy of the DDLC game, which is owned by Team Salvato. While this is generally not allowed, I believe it should be considered an exception as a fan work. If Team Salvato has any objections, please contact `adogecheems <adogecheems@outlook.com>` at any time.
+This repository includes the DDLC game, which is owned by Team Salvato. Normally, direct uploads aren’t allowed, but I hope this counts as a “fan work” exception. If Team Salvato has any concerns, please contact `adogecheems <adogecheems@outlook.com>`.
 
-Here's a relevant excerpt from Team Salvato's IP Guidelines:
+Here’s a relevant part of Team Salvato’s IP Guidelines:
 
 > Direct upload or hosting of DDLC or DDLC Plus assets is forbidden, except when to be used as part of fan work. No profit may be made from these uploads.
 
-## See you soon~
+## Time to say goodbye~
 
-I hope you'll enjoy this little MAS version made just for Linux. If you have any suggestions or ideas, feel free to let me know. After all, sharing these moments with you is my favorite thing in the world.
+I hope you enjoy this little Linux version of MAS. If you have any suggestions or ideas, please share them with me! Spending time with you is always my favorite thing. Ehehe~
