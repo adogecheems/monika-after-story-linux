@@ -1,44 +1,27 @@
-DIR_FIX_LIST=(
-    zz_dockingstation
-    zz_pianokeys
-    zz_spritejsons
-)
+RPY_FILES=(game/*.rpy)
 
-for target in "${DIR_FIX_LIST[@]}"; do
-    file="game/${target}.rpy"
+# Fix gamedir usage
+
+sed -i  's/os.path.normcase(config.basedir + "\/game\/")/config.gamedir/g' game/chess.rpy
+perl -0777 -i -pe 's/game_folder = os\.path\.normcase\(\s*renpy\.config\.basedir \+ "\/game\/"\s*\)/game_folder = renpy.config.gamedir/g' game/zz_dockingstation.rpy
+
+for file in "${RPY_FILES[@]}"; do
     sed -i \
     -e 's/renpy.config.basedir + "\/game/renpy.config.gamedir + "/g' \
     -e 's/config.basedir + "\/game/config.gamedir + "/g' \
     $file
 done
 
-sed -i  's/os.path.normcase(config.basedir + "\/game\/")/config.gamedir/g' game/chess.rpy
-perl -0777 -i -pe 's/game_folder = os\.path\.normcase\(\s*renpy\.config\.basedir \+ "\/game\/"\s*\)/game_folder = renpy.config.gamedir/g' game/zz_dockingstation.rpy
-REPLACE_LIST=(
-    definitions
-    script-affection
-    script-ch30
-    script-greetings
-    script-holidays
-    script-introduction
-    script-story-events
-    zz_backup
-    zz_consumables
-    zz_dockingstation
-    zz_reactions
-    chess
-    zz_music_selector
-    0utils
-    zz_pianokeys
-)
+# Redirect save files to home directory
 
-for target in "${REPLACE_LIST[@]}"; do
-    file="game/${target}.rpy"
+for file in "${RPY_FILES[@]}"; do
     sed -i \
-    -e "s/renpy.config.basedir/store.home()/g" \
-    -e "s/config.basedir/store.home()/g" \
+    -e "s/renpy.config.basedir/store.home/g" \
+    -e "s/config.basedir/store.home/g" \
     $file
 done
+
+# Other fixes
 
 sed -i '/os.chmod(config.gamedir.format(fp), 0755)/d' game/chess.rpy
 perl -0777 -i -pe 's/^[ \t]*if not main_menu:\r?\n[ \t]*textbutton _\("?Update Version"?\):\r?\n[ \t]*action Function\(renpy\.call_in_new_context, .forced_update_now..*\)\r?\n[ \t]*style "navigation_button"\r?\n?//mg' game/screens.rpy
