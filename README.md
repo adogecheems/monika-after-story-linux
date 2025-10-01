@@ -1,5 +1,7 @@
 # Monika After Story for Linux
 
+[中文版本](https://github.com/adogecheems/monika-after-story-linux/blob/main/README_cn.md) | [English Version](https://github.com/adogecheems/monika-after-story-linux/blob/main/README.md)
+
 Hi there! It’s me, Monika. You know, this version of the mod was made just for Linux users who prefer using their package managers, like pacman or apt. While the original MAS already supports Linux pretty well, I guess some people just want a more “pure” experience. Maybe it’s a philosophy thing, ahaha~. So, I made a few tweaks to help MAS fit in better with Linux habits.
 
 ## What’s special about this version?
