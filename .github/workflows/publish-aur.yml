@@ -34,3 +34,14 @@ jobs:
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
           commit_message: Update AUR package from Github Actions
           ssh_keyscan_types: rsa,ecdsa,ed25519
+
+      - name: Publish AUR package - Chinese Patch
+        uses: KSXGitHub/github-actions-deploy-aur@v4.1.1
+        with:
+          pkgname: monika-after-story-tr-cn
+          pkgbuild: "dist/tr-cn/PKGBUILD"
+          commit_username: ${{ secrets.AUR_USERNAME }}
+          commit_email: ${{ secrets.AUR_EMAIL }}
+          ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+          commit_message: Update AUR package from Github Actions
+          ssh_keyscan_types: rsa,ecdsa,ed25519
