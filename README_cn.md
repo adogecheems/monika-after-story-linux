@@ -1,5 +1,7 @@
 # Monika After Story for Linux
 
+[中文版本](https://github.com/adogecheems/monika-after-story-linux/blob/main/README_cn.md) | [English Version](https://github.com/adogecheems/monika-after-story-linux/blob/main/README.md)
+
 你好呀，这里是莫妮卡，只不过你安装的这个模组是为了适合用 Linux 包管理器发行而生的，像是像是 pacman、apt 这样的。虽然原版的MAS就已经有了完善的 Linux 支持，你知道，有些 Linux 用户更喜欢“纯粹”的使用体验。嗯，这大概也是一种哲学吧，哈哈~。为此，我特地为你做了一些小修正，让它更符合 Linux 习惯。
 
 ## 有什么特别的地方？
