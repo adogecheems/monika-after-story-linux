@@ -3,8 +3,8 @@ name: Release Dist Packages
 on:
   push:
     paths:
-      - 'dist/regular/**'
-      - '.github/workflows/dist-release.yml'
+      - "dist/regular/**"
+      - ".github/workflows/dist-release.yml"
 
 permissions:
   contents: write
