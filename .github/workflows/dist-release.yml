@@ -3,7 +3,7 @@ name: Release Dist Packages
 on:
   push:
     paths:
-      - "dist/regular/**"
+      - "dist/**"
       - ".github/workflows/dist-release.yml"
 
 permissions:
@@ -30,17 +30,27 @@ jobs:
           docker run --rm -v "$PWD":/workspace -w /workspace archlinux:latest bash -lc '
             set -euo pipefail
             pacman -Syu --noconfirm base-devel git dpkg rpm-org ruby sudo
-            gem install --no-document fpm
             useradd -m builder
             echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/builder
             chown -R builder:builder /workspace
             runuser -u builder -- bash -lc "
               set -euo pipefail
+              gem install --user-install --no-document fpm
+              USER_GEM_DIR=\$(ruby -e "puts Gem.user_dir")
+              export PATH=\"$USER_GEM_DIR/bin:$PATH\"
+              ARTIFACT_DIR=/workspace/artifacts
+              mkdir -p \"$ARTIFACT_DIR\"
               cd /workspace/dist/regular
+              export PKGDEST=\"$ARTIFACT_DIR\"
               makepkg -s --noconfirm --clean --cleanbuild
-              PKG_FILE=$(ls *.pkg.tar.* | head -n1)
-              fpm -s pacman -t deb -f "$PKG_FILE"
-              fpm -s pacman -t rpm -f "$PKG_FILE"
+              PKG_FILE=\$(ls \"$ARTIFACT_DIR\"/*.pkg.tar.* | head -n1)
+              if [ -z \"$PKG_FILE\" ]; then
+                echo 'makepkg did not produce a package archive' >&2
+                exit 1
+              fi
+              cd \"$ARTIFACT_DIR\"
+              fpm -s pacman -t deb -f \"$PKG_FILE\"
+              fpm -s pacman -t rpm -f \"$PKG_FILE\"
             "
           '
 
@@ -48,9 +58,9 @@ jobs:
         id: artifacts
         run: |
           set -euo pipefail
-          PKG_FILE=$(ls dist/regular/*.pkg.tar.* | head -n1)
-          DEB_FILE=$(ls dist/regular/*.deb | head -n1)
-          RPM_FILE=$(ls dist/regular/*.rpm | head -n1)
+          PKG_FILE=$(ls artifacts/*.pkg.tar.* | head -n1)
+          DEB_FILE=$(ls artifacts/*.deb | head -n1)
+          RPM_FILE=$(ls artifacts/*.rpm | head -n1)
           echo "pkg=$PKG_FILE" >> "$GITHUB_OUTPUT"
           echo "deb=$DEB_FILE" >> "$GITHUB_OUTPUT"
           echo "rpm=$RPM_FILE" >> "$GITHUB_OUTPUT"
