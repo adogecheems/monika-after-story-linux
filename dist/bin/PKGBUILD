@@ -14,7 +14,7 @@ provides=('ddlc-mas')
 conflicts=('monika-after-story')
 source=("https://github.com/adogecheems/monika-after-story-linux/releases/download/v$pkgver/monika-after-story.pkg.tar.zst")
 noextract=('monika-after-story.pkg.tar.zst')
-sha256sums=(f3579ae0362d07754170a9b47d1ecb0e3778ebfeedb3f6f1f1ffd26d223c4aa7)
+sha256sums=('7fe09fb901ff6c18520b099c7a46a7e4cc52fd2538436b0f06170ce66d864e81')
 package() {
     bsdtar -xvf "$srcdir/monika-after-story.pkg.tar.zst" -C "$pkgdir" opt usr
 }
